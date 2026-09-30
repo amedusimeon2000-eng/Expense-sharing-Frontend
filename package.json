@@ -1,5 +1,5 @@
 {
-  "name": "expense-sharing-frontend",
+  "name": "322",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "aos": "^2.3.4",
+    "carousel": "^0.0.3",
+    "nodemon": "^3.1.14",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4",
+    "react-slick": "^0.31.0",
+    "slick": "^1.12.2",
+    "slick-carousel": "^2.0.0",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
