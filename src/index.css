@@ -1,1 +1,237 @@
 @import "tailwindcss";
+
+/*
+ * Tokens ported from nowah-dashboard (Tailwind v3 config + globals.css) to
+ * Tailwind v4 `@theme`. Class names match Nowah: `bg-brand-primary`,
+ * `text-text-main-1`, `bg-grey-50`, `shadow-card-shadow`, `text-13`, ...
+ */
+@theme {
+  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter);
+
+  --text-xxs: 10px;
+  --text-13: 13px;
+
+  --radius: 0.5rem;
+  --radius-xs: 3px;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  /* Brand */
+  --color-brand-white: #ffffff;
+  --color-brand-light: #f5f6f8;
+  --color-brand-primary: #082a95;
+  --color-brand-primary-subtle: #f3f4ff;
+  --color-brand-primary-surface: #f4f6ff;
+  --color-brand-primary-selected: #eff6ff;
+  --color-brand-secondary: #00d3c7;
+  --color-brand-blue: #2e37a4;
+  --color-brand-indigo: #2f3fff;
+  --color-brand-indigo-subtle: #f0f2ff;
+  --color-brand-neutral: #1e232b;
+  --color-brand-neutral-25: #fafafa;
+
+  /* SplitBook accent: Nowah's orange scale plus two darker steps for text/buttons */
+  --color-orange-100: #ffeee9;
+  --color-orange-200: #feded4;
+  --color-orange-300: #fccdbe;
+  --color-orange-400: #fabda9;
+  --color-orange-500: #f7ac94;
+  --color-orange-600: #f49b7e;
+  --color-orange-700: #ef8968;
+  --color-orange-800: #eb7752;
+  --color-orange-900: #e66438;
+  --color-orange-950: #cf5a32;
+  --color-orange-1000: #b8471f;
+  --color-orange-1100: #a33f1b;
+
+  /* Avatar / category tints */
+  --color-purple-transparent: #f9f2f9;
+  --color-purple-800: #993399;
+  --color-pink-transparent: #fdf4f9;
+  --color-pink-1000: #c2367f;
+  --color-teal-transparent: #e9f5f4;
+  --color-teal-1000: #2f7d72;
+
+  --color-btn-main-1: #b8471f;
+  --color-btn-main-hover: #a33f1b;
+  --color-btn-text-1: #0a1b39;
+  --color-btn-text-disabled: #9da4b0;
+
+  --color-tag-bg: #dbeafe;
+  --color-tag-text: #1e40af;
+
+  /* Text */
+  --color-text-main-1: #0a1b39;
+  --color-text-sub-1: #545f74;
+  --color-text-sub-2: #6c7688;
+  --color-text-tertiary: #919191;
+  --color-text-muted: #717891;
+  --color-text-header: #2e354e;
+  --color-text-description: #334155;
+  --color-text-info: #6b7280;
+
+  /* Surfaces */
+  --color-surface-level-1: #ffffff;
+  --color-surface-level-2: #f5f7f8;
+  --color-surface-level-3: #fffafa;
+  --color-field-level-hover-1: #fafafa;
+
+  /* Grey */
+  --color-grey-10: #f9fafc;
+  --color-grey-15: #f1f4f7;
+  --color-grey-25: #f3f4f6;
+  --color-grey-50: #f9fafb;
+  --color-grey-100: #ced1d7;
+  --color-grey-200: #b6bbc4;
+  --color-grey-300: #9da4b0;
+  --color-grey-400: #858d9c;
+  --color-grey-500: #6c7688;
+  --color-grey-600: #545f74;
+  --color-grey-700: #3b4961;
+  --color-grey-800: #23324d;
+  --color-grey-900: #0a1b39;
+  --color-grey-950: #091b33;
+  --color-grey-980: #e8e8e8;
+  --color-grey-1000: #6e7687;
+  --color-grey-divider: #d9d9d9;
+  --color-grey-secondary: #5e636b;
+  --color-grey-border: #e4e4e4;
+  --color-grey-border-light: #cbd0dc;
+  --color-grey-dark: #111827;
+  --color-grey-icon: #949494;
+  --color-grey-label: #bbbbbb;
+  --color-grey-transparent: #e7e8eb;
+
+  /* Primary */
+  --color-primary-50: #f0f3fd;
+  --color-primary-100: #d9dbef;
+  --color-primary-200: #c7c9e6;
+  --color-primary-300: #b4b7de;
+  --color-primary-400: #a1a5d6;
+  --color-primary-500: #8e93ce;
+  --color-primary-600: #7b81c6;
+  --color-primary-700: #696fbd;
+  --color-primary-800: #3e479f;
+  --color-primary-900: #434bad;
+  --color-primary-950: #3c449c;
+
+  /* Success */
+  --color-success-50: #eef9f1;
+  --color-success-100: #e9f7ef;
+  --color-success-200: #d4efdf;
+  --color-success-300: #bee7cf;
+  --color-success-400: #a9dfbf;
+  --color-success-500: #93d7b0;
+  --color-success-600: #7dcea0;
+  --color-success-700: #68c690;
+  --color-success-800: #52be80;
+  --color-success-900: #3db670;
+  --color-success-950: #37a465;
+  --color-success-1000: #27ae60;
+  --color-success-1100: #1f8a4c;
+  --color-success-transparent: #f4fbf7;
+
+  /* Error */
+  --color-error-50: #ffe8e8;
+  --color-error-100: #fde9e9;
+  --color-error-200: #fcd2d2;
+  --color-error-300: #fa8cbc;
+  --color-error-400: #f9a5a5;
+  --color-error-500: #f78f8f;
+  --color-error-600: #f57878;
+  --color-error-700: #f46262;
+  --color-error-800: #f24b4b;
+  --color-error-900: #f13535;
+  --color-error-950: #d93030;
+  --color-error-980: #dc2626;
+  --color-error-1000: #ef1e1e;
+  --color-error-1100: #d04c46;
+  --color-error-transparent: #fef4f4;
+
+  /* Warning */
+  --color-warning-50: #fef7e0;
+  --color-warning-100: #fcf8eb;
+  --color-warning-200: #f9f1d8;
+  --color-warning-300: #f6eac4;
+  --color-warning-400: #f3e3b1;
+  --color-warning-500: #f1dc9d;
+  --color-warning-600: #eed589;
+  --color-warning-700: #ebce76;
+  --color-warning-800: #e8c762;
+  --color-warning-900: #e5c04f;
+  --color-warning-950: #cead47;
+  --color-warning-1000: #f3ce4b;
+  --color-warning-1100: #ffa401;
+  --color-warning-1200: #b54708;
+  --color-warning-transparent: #fefbf5;
+
+  /* Info */
+  --color-info-100: #eaf2fd;
+  --color-info-200: #d5e6fb;
+  --color-info-300: #c1d9fa;
+  --color-info-400: #acccf8;
+  --color-info-500: #97c0f6;
+  --color-info-600: #82b3f4;
+  --color-info-700: #6da6f2;
+  --color-info-800: #5999f1;
+  --color-info-900: #448def;
+  --color-info-950: #3d7fd7;
+  --color-info-1000: #4d83ee;
+  --color-info-transparent: #f4f8fe;
+
+  /* Indigo */
+  --color-indigo-50: #dce4ff;
+  --color-indigo-100: #e7ecfc;
+  --color-indigo-200: #d0daf9;
+  --color-indigo-300: #bac7f5;
+  --color-indigo-400: #a4b4f1;
+  --color-indigo-500: #8ea2ec;
+  --color-indigo-600: #7a8fe7;
+  --color-indigo-700: #667be1;
+  --color-indigo-800: #5467db;
+  --color-indigo-900: #4351d4;
+  --color-indigo-950: #3c49bf;
+
+  /* Shadows */
+  --shadow-default: 0px 1px 1px 0px #0000000d;
+  --shadow-default-2: 0px 6px 12px 0px #0000001f;
+  --shadow-elevation-1: -0.7px 3px 30px 8px #0000001a;
+  --shadow-drop-blur: -2px 4px 20px 0px #082a950f;
+  --shadow-drop-down: 0px 8px 12px 0px #00000014;
+  --shadow-popover: 0px 40px 80px 0px #082a951a;
+  --shadow-darken: 0px 4px 18px 0px #00000024;
+  --shadow-card-shadow: 0px 4px 4px 0px #082a9526;
+  --shadow-content-shadow: 0px 4px 21px 3px #0000001a;
+}
+
+@layer base {
+  body {
+    @apply bg-surface-level-1 font-inter text-text-main-1 antialiased;
+    font-feature-settings: 'ss02';
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-xs font-normal text-text-tertiary;
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.overlay_bg {
+  background: #131a2180;
+  backdrop-filter: blur(3px);
+}

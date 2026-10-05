@@ -1,24 +1,33 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { AuthLayout } from './layout/AuthLayout';
+import { DashboardLayout } from './layout/DashboardLayout';
+import { GuestRouteLayout } from './layout/GuestRouteLayout';
+import { ProtectedRouteLayout } from './layout/ProtectedRouteLayout';
+import { RootLayout } from './layout/RootLayout';
 import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import { AppRoutes } from './routes';
+import { authRoutes } from './routes/auth.route';
+import { dashboardRoutes } from './routes/dashboard.route';
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <nav className="flex gap-4 p-4 bg-slate-900 text-white">
-        <Link to="/">Landing</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/register">Register</Link>
-      </nav>
+const router = createBrowserRouter([
+  {
+    element: <RootLayout />,
+    children: [
+      { path: AppRoutes.home, element: <LandingPage /> },
+      {
+        element: <ProtectedRouteLayout />,
+        children: [{ element: <DashboardLayout />, children: dashboardRoutes }],
+      },
+      {
+        element: <GuestRouteLayout />,
+        children: [{ element: <AuthLayout />, children: authRoutes }],
+      },
+      { path: AppRoutes.auth, element: <Navigate to={AppRoutes.login} replace /> },
+      { path: '*', element: <Navigate to={AppRoutes.home} replace /> },
+    ],
+  },
+]);
 
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
-};
+const App = () => <RouterProvider router={router} />;
 
 export default App;
