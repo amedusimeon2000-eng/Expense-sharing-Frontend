@@ -9,24 +9,29 @@ import { AppRoutes } from './routes';
 import { authRoutes } from './routes/auth.route';
 import { dashboardRoutes } from './routes/dashboard.route';
 
-const router = createBrowserRouter([
+const withLayouts = (outerLayout, innerLayout, routes) => ({
+  element: outerLayout,
+  children: [{ element: innerLayout, children: routes }],
+});
+
+const routeTree = [
   {
     element: <RootLayout />,
     children: [
       { path: AppRoutes.home, element: <LandingPage /> },
-      {
-        element: <ProtectedRouteLayout />,
-        children: [{ element: <DashboardLayout />, children: dashboardRoutes }],
-      },
-      {
-        element: <GuestRouteLayout />,
-        children: [{ element: <AuthLayout />, children: authRoutes }],
-      },
+      withLayouts(
+        <ProtectedRouteLayout />,
+        <DashboardLayout />,
+        dashboardRoutes,
+      ),
+      withLayouts(<GuestRouteLayout />, <AuthLayout />, authRoutes),
       { path: AppRoutes.auth, element: <Navigate to={AppRoutes.login} replace /> },
       { path: '*', element: <Navigate to={AppRoutes.home} replace /> },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routeTree);
 
 const App = () => <RouterProvider router={router} />;
 
